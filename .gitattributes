@@ -20,3 +20,14 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+
+
+# Matlab related junk
+*.asv
+
+
+# motion data
+*.trc
+*.mot
+*.c3d
+*.sto
