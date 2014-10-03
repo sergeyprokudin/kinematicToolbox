@@ -1,0 +1,32 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for beat]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>loadnor.old</H1>
+<H2>(beat/loadnor.old.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[data, Fs, chanLabel, chanUnits, numChans, numSamples, fullName] = loadnor (fullName)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ <A HREF = "../1.beat/loadnor.html">LOADNOR</A>   Load a Noraxon MyoSoft file of analog data in ASCII format
+   [DATA, FS, CHANLABEL, CHANUNITS, NUMCHANS, NUMSAMPLES FULLNAME] = <A HREF = "../1.beat/loadnor.html">LOADNOR</A> 
+   prompts the user for the name of a data acquisition file to load.  
+
+   It returns the data in the matrix DATA (one column per channel).  
+   FS is the rate at which data were sampled, CHANLABEL is a (text) 
+   label for the channel, CHANUNITS is text for the units being 
+   measured on that channel (e.g., 'Volts'), NUMCHANS is the total 
+   number of channels. NUMSAMPLES is the number of samples in each channel.  
+
+   FULLNAME is the path- and filname of the opened file.
+
+   <A HREF = "../1.beat/loadacq.html">LOADACQ</A> (FILENAME) loads data from the file FILENAME (note: it is
+   assumed that the path is contained in the filename).
+
+   Support coming for MyoSoft's own format.
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Wed Jun 20 12:12:51 2001
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

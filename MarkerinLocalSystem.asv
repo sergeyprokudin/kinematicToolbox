@@ -1,0 +1,70 @@
+function [ Lmarker ] = MarkerinLocalSystem(Csystem,Omarker,Gmarker)
+%%GlobalToTechnicalCoordinateSytem- Move a marker from its global
+	%coordinates to the parent technical coodinate frame
+	%Author: Thor Besier & James Dunne. 
+	% 
+	%   Csystem             Calculated Coordinate system
+    %   Omarker             Orgin of Coodinate system (Global)
+    %   Gmarker             Marker location in global
+    
+% Author:  James Dunne
+% Created: Feburary 2010
+% Last Updated: Jan 2013
+
+%Number of frames
+	nFrames = length(Gmarker);
+
+%Define the prox origin as the average of the prox markers
+	origin=Omarker;
+
+% Define individual vectors of the coordinate system
+	[e1Proximal,e2Proximal,e3Proximal]=Csystem;
+ 
+% PreAllocate memory to save time
+	DistMrk1_ProxCS = zeros(nFrames,3);
+
+% Transform the Marker global coordinates into local coordinates
+	for i=1:nFrames
+		rotationmatrix=[e1Proximal(i,:);e2Proximal(i,:);e3Proximal(i,:)];
+		originvector=origin(i,:)';
+		DistMrk1_ProxCS(i,:)=(rotationmatrix*(dist_mkr1(i,:)')-rotationmatrix*originvector)';
+    end
+
+% get a single position value for all three x,y and z     
+    	Lmarker=mean(DistMrk1_ProxCS);
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

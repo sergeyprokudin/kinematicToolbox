@@ -1,0 +1,32 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for beat]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>loadvsa</H1>
+<H2>(beat/loadvsa.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[data, numButtons, sampInt, buttons, filename] = loadvsa</pre>
+<HR><H3>Help text</H3>
+<pre>
+ LOADVSA   A function that loads a .VSA type data file obtained from the Vscope system.
+[DATA, NUMBUTTONS, SAMPINT, BUTTONS, FILENAME] = LOADVSA
+   prompts the user for a file to load (from a standard file 
+   open dialog).  The file is assumed to end in '.vsa'.  
+
+   Irrelevant header info is stripped off.  The function returns:
+
+      NUMBUTTONS: the number of Vscope buttons acquired
+      SAMPINT: the sampling interval (in msec., per button)
+      DATA: A matrix containing all the data acquired.  Each row 
+           contains x-, y-, and z-coordinates for each button 
+          (thus, data will have 3 * numButtons columns).
+      BUTTONS: the names of the buttons (e.g., 'green')
+      FILENAME: the name of the file loaded
+
+   LOADVSA will also fix dropouts in the file.
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Wed Jun 20 12:12:51 2001
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

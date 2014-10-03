@@ -1,0 +1,35 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for beat]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>compang</H1>
+<H2>(beat/compang.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>theta = compang (varargin)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ COMPANG   Compute the (2-D or 3-D) angle created by a joint.
+   A function that takes 3-D data and computes the angle defined
+   by either three markers (points), or two lines/planes.  In the case
+   of three markers, it computes the angle between two lines
+   which are constructed by joining the points given by
+   the three markers.  To compute a 2-D angle, the plane 
+   in which to compute the angle is given by the final argument.
+   THETA = COMPANG (MARKER1, MARKER2, MARKER3) computes the
+   3-D angle between a line drawn from each point in MARKER1 and
+   MARKER2 and a line from MARKER2 to MARKER3.  The angle
+   is returned in the vector THETA.
+   THETA = COMPANG (MARKER1, MARKER2, MARKER3, VIEW) computes the
+   2-D angle between a line drawn from each point in MARKER1 and
+   MARKER2 and a line from MARKER2 to MARKER3 from the perspective
+   given by VIEW.  
+   THETA = COMPANG (LINE1, LINE2, VIEW) works analogously.
+   VIEW can be either 'xy' (x-y plane, top view in VScope parlance), 
+   'yz' (y-z plane, side view for VScope parlance), or 'xz' (x-z plane, 
+   front view for VScope).
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Wed Jun 20 12:12:51 2001
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

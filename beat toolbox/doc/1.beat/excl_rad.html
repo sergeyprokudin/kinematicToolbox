@@ -1,0 +1,24 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for beat]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>excl_rad</H1>
+<H2>(beat/excl_rad.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>excl_rad (tagPrefix)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ EXCL_RAD   Callback function to make radio buttons mutually exclusive
+   EXCL_RAD (TAGPREFIX) finds all radio buttons in a figure, and in a set whose
+   'Tag' property begins with the string TAGPREFIX, turns all off, except for the
+   one that was clicked.  For this to work properly, all radio buttons 'grouped' 
+   together must have tags that begin the same way, e.g., 'Radiobutton_Plot'.
+   Presumably, the remainder of the tags will be unique, e.g., 'Radiobutton_Plot1',
+   'Radiobutton_Plot2'.  EXCL_RAD uses the 'Min' and 'Max' properties of the button
+   that was clicked to set the 'Min' and 'Max' properties for the entire group.
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Wed Jun 20 12:12:51 2001
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

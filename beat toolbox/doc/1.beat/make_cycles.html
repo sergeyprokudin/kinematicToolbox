@@ -1,0 +1,29 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for beat]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>make_cycles</H1>
+<H2>(beat/make_cycles.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[cycles, newOff] = make_cycles (data, on, off, numPoints)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ MAKE_CYCLES   Divide cyclic data into its component cycles, and create average cycle.
+   [CYCLES, NEWOFF] = MAKE_CYCLES (DATA, ON, OFF, NUMPOINTS) 
+   makes cycles out of the data contained in the vector DATA, 
+   with ON and OFF being vectors containing which points to use 
+   for contact on and off.  Cycles are created based on the points
+   indicating contact ON (e.g., heel strike).
+
+   NUMPOINTS is an optional argument for the number of points in 
+   a cycle; it defaults to 250.
+
+   The first column in CYCLES is the average; the remainder are the the
+   individual cycles.  NEWOFF gives the indices in each average cycle of
+   where the points given by OFF occurred.
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Wed Jun 20 12:12:51 2001
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

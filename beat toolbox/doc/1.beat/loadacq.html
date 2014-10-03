@@ -1,0 +1,34 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for beat]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>loadacq</H1>
+<H2>(beat/loadacq.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[data, Fs, chanLabel, chanUnits, numChans, numSamples, fullName] = loadacq (dataArch, fullName)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ LOADACQ   Load an Acqknowledge format file of analog data
+   [DATA, FS, CHANLABEL, CHANUNITS, NUMCHANS, NUMSAMPLES, FULLNAME] = LOADACQ 
+   prompts the user for the name of a data acquisition file to load.  It 
+   returns the data in the matrix DATA (one column per channel).  
+
+   FS is the rate at which data were sampled, CHANLABEL is a (text) label for
+   the channel, CHANUNITS is text for the units being measured on that 
+   channel (e.g., 'Volts'), NUMCHANS is the total number of channels, 
+   NUMSAMPLES is the number of samples per channel. 
+   FULLNAME is the path- and filename of the opened file.
+
+   LOADACQ (DATA_ARCH) performs the same function, but allows the user
+   to specify the architecture of the machine on which the data were 
+   collected (i.e., big- or little-endian).  If not specified, defaults
+   to big-endian (Mac).
+
+   LOADACQ (DATA_ARCH, FILENAME) loads data from the file FILENAME (note: it is
+   assumed that the path is contained in the filename).
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Wed Jun 20 12:12:51 2001
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

@@ -1,0 +1,55 @@
+reading object from file [Scale_measurement.xml] cwd =G:\Projects\OpenSimRepeatability\2012\OpenSimModel
+reading object from file [Scale_set.xml] cwd =G:\Projects\OpenSimRepeatability\2012\OpenSimModel
+reading object from file [Scale_task.xml] cwd =G:\Projects\OpenSimRepeatability\2012\OpenSimModel
+Processing subject RepeatabilityModel
+
+Step 1: Loading generic model
+Updating Model file from 20001 to latest format...
+Loaded model RepeatabilityModel from file G:\Projects\OpenSimRepeatability\2012\OpenSimModel\RepeatabilityModel.osim
+
+Step 2: Scaling generic model
+Loaded marker file G:\Projects\OpenSimRepeatability\2012\OpenSimModel\Kane _Static.trc (66 markers, 740 frames)
+Measurement 'Right_Femur'
+	pair 0 (RHJC, RKJC): model = 0.397, experimental = 0.452988
+	overall scale factor = 1.14103
+Measurement 'Left_Femur'
+	pair 0 (LHJC, LKJC): model = 0.397, experimental = 0.443718
+	overall scale factor = 1.11768
+Measurement 'Right_Tibia'
+	pair 0 (RKJC, RAJC): model = 0.4, experimental = 0.396665
+	overall scale factor = 0.991662
+Measurement 'Left_Tibia'
+	pair 0 (LKJC, LAJC): model = 0.4, experimental = 0.400879
+	overall scale factor = 1.0022
+Measurement 'PelvisZ'
+	pair 0 (RHJC, LHJC): model = 0.167, experimental = 0.188192
+	overall scale factor = 1.1269
+Measurement 'PelvisY'
+	pair 0 (RHJC, RASI): model = 0.127892, experimental = 0.120367
+	overall scale factor = 0.941158
+Measurement 'PelvisX'
+	pair 0 (OPelvis, SACR): model = 0.16131, experimental = 0.18481
+	overall scale factor = 1.14568
+Measurement 'FootXright'
+	pair 0 (G_RCAL, G_RMT1): model = 0.20637, experimental = 0.241646
+	overall scale factor = 1.17093
+Measurement 'FootYright'
+	pair 0 (RCAL, G_RCAL): model = 0.045, experimental = 0.0571548
+	overall scale factor = 1.27011
+Measurement 'FootZright'
+	pair 0 (G_RMT1, G_RMT2): model = 0.0799323, experimental = 0.0831425
+	overall scale factor = 1.04016
+Measurement 'Trunk'
+	pair 0 (RHJC, C7): model = 0.601869, experimental = 0.602137
+	overall scale factor = 1.00044
+Measurement 'FootXleft'
+	pair 0 (G_LCAL, G_LMT1): model = 0.201982, experimental = 0.245933
+	overall scale factor = 1.2176
+Measurement 'FottYleft'
+	pair 0 (LCAL, G_LCAL): model = 0.0452369, experimental = 0.0605825
+	overall scale factor = 1.33923
+Measurement 'FootZleft'
+	pair 0 (G_LMT1, G_LMT2): model = 0.0759208, experimental = 0.0987566
+	overall scale factor = 1.30078
+Wrote model file RepeatabilityModel_scaled.osim from model RepeatabilityModel
+Wrote scale file RepeatabilityModel_ScaleSet_Applied.xml for model RepeatabilityModel

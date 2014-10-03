@@ -1,0 +1,43 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for beat]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>toe_off</H1>
+<H2>(beat/toe_off.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>events = toe_off (data, dataType, numstds, side)</pre>
+<HR><H3>Help text</H3>
+<pre>
+TOE_OFF  Pick toe off events from data.
+
+   TOE_OFF finds the toe off events in a set of gait data.
+
+   TOE_OFF (DATA, DATATYPE, NUMSTDS, SIDE) finds the toe off events in the
+   data given by DATA, which is of type DATATYPE.  DATATYPE is a
+   string which is either 'motion', 'force', or 'switch'.  When DATATYPE is
+   'motion', DATA is assumed to be a vector containing the
+   forward-backward motion of the toe.  When DATATYPE is 'switch',
+   DATA is assumed to be a vector of footswitch data for the heel (similarly,
+   for 'force', force plate data is used, which is processed the same way as
+   'switch').  If DATATYPE is not given, it is assumed to be 'motion'.  NUMSTDS
+   refers not to sexually transmitted diseases, but to the number of standard
+   deviations used in determining whether a point is a toe off if the
+   data is specified as either 'switch' or 'force'; it defaults to 5.  SIDE
+   is specified as 'l' or 'r', and tells whether this is data for the right
+   or left side for V-Scope data (or for any other data where the coordinate
+   system flips from one side to the other.  It defaults to 'l' (which should
+   be appropraite for data taken with other systems).
+
+   For 'motion' data, toe off is assumed to occur when the 
+   velocity of the toe changes from backward to forward (passes
+   through 0, going up) (this is reversed if side is specified as 'r').
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../1.beat/fillgaps.html">fillgaps</A>       beat/fillgaps.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Wed Jun 20 12:12:51 2001
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>
