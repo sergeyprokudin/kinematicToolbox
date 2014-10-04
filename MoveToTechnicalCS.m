@@ -1,4 +1,4 @@
-function [ ChildMrk_TechCS ] = MoveToTechnicalCS(Prox_mkrStruct, ChildMarkerData)
+function [ ChildMrk_TechCS ] = MoveToTechnicalCS(cluster, ChildMarkerData)
 %%GlobalToTechnicalCoordinateSytem- Move a marker from its global
 	%coordinates to the parent technical coodinate frame
 	%Author: Thor Besier & James Dunne. 
@@ -8,24 +8,22 @@ function [ ChildMrk_TechCS ] = MoveToTechnicalCS(Prox_mkrStruct, ChildMarkerData
     %   VirtualMarkerName   x,y,z data for a marker which you want to hold
     %                       in a created technical coordinate system
 	
-    
-    
 % Author: Thor Besier and James Dunne
 % Created: Feburary 2010
 % Last Updated: May 2011
 
-    if isstruct(Prox_mkrStruct)
-            prox_mkr1=Prox_mkrStruct(1).Data;
-			prox_mkr2=Prox_mkrStruct(2).Data;
-			prox_mkr3=Prox_mkrStruct(3).Data;
+    if isstruct(cluster)
+            clusterMkr1=cluster(1).Data;
+			clusterMkr2=cluster(2).Data;
+			clusterMkr3=cluster(3).Data;
     else
-            prox_mkr1=Prox_mkrStruct(:,1:3);
-			prox_mkr2=Prox_mkrStruct(:,4:6);
-			prox_mkr3=Prox_mkrStruct(:,7:9);
+            clusterMkr1=cluster(:,1:3);
+			clusterMkr2=cluster(:,4:6);
+			clusterMkr3=cluster(:,7:9);
     end
     
     [m n]=size(ChildMarkerData);
-    [m1 n1]=size(prox_mkr1);
+    [m1 n1]=size(clusterMkr1);
     if m==1
         dist_mkr1=repmat(ChildMarkerData,m1,1);
     else
@@ -33,13 +31,13 @@ function [ ChildMrk_TechCS ] = MoveToTechnicalCS(Prox_mkrStruct, ChildMarkerData
     end
     
 %define the proximal marker positions....willl need to make this generic
-	nFrames = length(prox_mkr1);
+	nFrames = length(clusterMkr1);
 
 %Define the prox origin as the average of the prox markers
-	origin=(prox_mkr2+prox_mkr1+prox_mkr3 )/3;
+	origin=(clusterMkr2+clusterMkr1+clusterMkr3 )/3;
 
 % Calculate unit vectors of Pelvis origin relative to global
-	[e1Proximal,e2Proximal,e3Proximal]=segmentorientationV2V1(prox_mkr1-prox_mkr3,prox_mkr2-origin);
+	[e1Proximal,e2Proximal,e3Proximal]=segmentorientationV2V1(clusterMkr1-clusterMkr3,clusterMkr2-origin);
  
 % PreAllocate memory to save time
 	DistMrk1_ProxCS = zeros(nFrames,3);
