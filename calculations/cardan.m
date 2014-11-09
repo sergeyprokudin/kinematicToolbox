@@ -40,8 +40,8 @@ end
 for i=1:size(s1mov,1)
   % Calculating the Cardan angles
   T1=inv(soder([s2neut;s2mov(i,:)])) * soder([s1neut;s1mov(i,:)]);
-  %   string = ['angles(i,:)=r' sequence 'solv(T1);']
-  %   eval(['angles(i,:)=r' sequence 'solv(T1);']);
+ %   string = ['angles(i,:)=r' sequence 'solv(T1);']
+%   eval(['angles(i,:)=r' sequence 'solv(T1);']);
   % Woltring's (1994) helical convention (helical angles)
   [n1,point1,phi1,t1]=screw(T1); 
   helicang(i,1:3)=n1(1:3,1)'.*phi1;

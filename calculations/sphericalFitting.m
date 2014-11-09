@@ -1,12 +1,12 @@
-function [Cm]=sphericalFitting(TrP)
+function Cm = sphericalFitting(TrP)
 %%  sphericalFitting() Finds the center or rotation of a marker cluster
 % Description: Calculation of the hip joint center HJC.
 % [Cm]=ballJointCalc(TrP).
-% ------------------------------------------------------------------------------------------
+%
 % INPUT: TrP clean matrix containing markers'trajectories in the proximal system of reference.
 %            dim(TrP)=Nc*3p where Nc is number of good samples and p is the number of distal markers
 % OUTPUT: Cm vector with the coordinates of hip joint center (Cx,Cy,Cz).
-%------------------------------------------------------------------------------------------
+%
 % Comments: metodo1b extracts HJC position as the centre of the optimal spherical suface that minimizes the root mean square error 
 %           between the radius(unknown) and the distance of the centroid of marker's coordinates from sphere center(unknown).
 %           Using edfinition of vector differentiation is it possible to put the problem in the form: A*Cm=B that is a

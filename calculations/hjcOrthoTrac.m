@@ -1,16 +1,16 @@
-function [ OrthotrackHipStruct ] = OrthotrakHJC(PelvisStruct)
+function HJC = hjcOrthroTrac(PelvisStruct)
 %UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+   Detailed explanation goes here
 
 
 
-%{* Uses HJC location of Orthotrak (Shea et al.1997 Gait and Posture 5,157)*}
+% Uses HJC location of Orthotrak (Shea et al.1997 Gait and Posture 5,157)
 
 prox_mkr1 = PelvisStruct(1).Data; %RASI
 prox_mkr2 = PelvisStruct(2).Data; %LASI
 prox_mkr3 = PelvisStruct(3).Data; %SACRUM
 
-% Define the prox origin as the average of the prox markers
+%Define the prox origin as the average of the prox markers
 origin=(prox_mkr2+prox_mkr1+prox_mkr3 )/3;
 
 % Calculate unit vectors of Pelvis origin relative to global
@@ -53,29 +53,6 @@ for yy=1:2
     [HipStruct]= Move_To_Global(PelvisStruct, OrthotrakHipData(yy,:)',OrthotrakHipName(yy,:));
     OrthotrackHipStruct(yy)=HipStruct;
 end
-
-
-
-
-
-% Place this back in the global reference frame
-
-% 
-% % 
-% hold on
-% plot3(prox_mkr1(:,1),prox_mkr1(:,2),prox_mkr1(:,3),'k');
-% plot3(prox_mkr2(:,1),prox_mkr2(:,2),prox_mkr2(:,3));
-% plot3(prox_mkr3(:,1),prox_mkr3(:,2),prox_mkr3(:,3));
-% plot3(Reg_LHJC(:,1),Reg_LHJC(:,2),Reg_LHJC(:,3),'r');
-% plot3(Reg_RHJC(:,1),Reg_RHJC(:,2),Reg_RHJC(:,3),'g');
-% 
-% hold on
-% plot3(RASI_Pelvis(:,1),RASI_Pelvis(:,2),RASI_Pelvis(:,3),'k');
-% plot3(LASI_Pelvis(:,1),LASI_Pelvis(:,2),LASI_Pelvis(:,3));
-% plot3(SACRUM_Pelvis(:,1),SACRUM_Pelvis(:,2),SACRUM_Pelvis(:,3));
-% plot3(Reg_LHJC(:,1),Reg_LHJC(:,2),Reg_LHJC(:,3),'r');
-% plot3(Reg_RHJC(:,1),Reg_RHJC(:,2),Reg_RHJC(:,3),'g');
-% 
 
 end
 

@@ -26,8 +26,12 @@ if (size(data,2)/3)~=fix(size(data,2)/3),
    disp('ERROR: input has to be multiple of 3 (XYZ coordinates)'); return
 end
 
+
+
+
 A=[reshape(data(1,:)',3,size(data,2)/3)]';  
 B=[reshape(data(2,:)',3,size(data,2)/3)]';  
+
 
 % Checking for NaNs and also checking if still 3 pts left and if not
 % T=[NaN...];
@@ -39,12 +43,15 @@ if size(A,1)<3,
  T=[NaN,NaN,NaN,NaN;NaN,NaN,NaN,NaN;NaN,NaN,NaN,NaN;NaN,NaN,NaN,NaN;]; return;
 end
 
+
 Amean=mean(A)'; Bmean=mean(B)';
+
 
 for i=1:size(A,1)-size(cut,2),
         Ai(:,i)=[A(i,:)-Amean']';
         Bi(:,i)=[B(i,:)-Bmean']';
 end
+
 
 C=Bi*Ai';
 [P,T,Q]=svd(C);
