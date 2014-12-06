@@ -1,4 +1,4 @@
-function HJC = hjcOrthroTrac(PelvisStruct)
+function HJC = hjcOrthroTrac(varagin)
 %UNTITLED Summary of this function goes here
    Detailed explanation goes here
 

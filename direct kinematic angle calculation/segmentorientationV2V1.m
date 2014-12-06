@@ -1,4 +1,4 @@
-function [e1,e2,e3] = segmentorientationV2V1(V2,V1)
+function frame = segmentorientationV2V1(V2,V1)
 %% segmentorientationV2V1 calculates an orthoganal coordinate system.
 %   segmentorientationV2V1() calculates an orthoganal Coordinate system 
 %   from the crossproduct of unit vectors 2 and 1 to find vector 3. It then
@@ -25,3 +25,5 @@ end
 for i=1:length(V1)
    e1(i,:) = cross(e2(i,:),e3(i,:));
 end
+
+frame = [e1 e2 e3];

@@ -1,5 +1,6 @@
-function newStations = coordinateSystemTransform(data,frameOrigin, frameOrient, stations, moveTo)
+function newStations = stationInFrame(data,frameOrigin, frameOrient, stations, moveTo)
 
+newStations = zeros(size(data.(stations{1})));
 
 for u = 1 : length(stations)
     % Transform the global position of the station to technical
@@ -28,10 +29,15 @@ for u = 1 : length(stations)
     end
  
     % Appened the newStationData into an array
-    if u == 1;
-        newStations = struct(['station' num2str(u)],{newStationData});
+    %     if u == 1;
+    %         newStations = struct(['station' num2str(u)],{newStationData});
+    %     else
+    %         eval(['newStations.station' num2str(u) ' = newStationData;'])
+    %     end
+    if u == 1
+        newStations = newStationData;
     else
-        eval(['newStations.station' num2str(u) ' = newStationData;'])
+        newStations = [newStations newStationData];
     end
 
 
