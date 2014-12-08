@@ -91,7 +91,7 @@ while distance(Cm_old',Cm_in')>0.0000001
     [U,S,V] = svd(A);
     Cm_in=V*inv(S)*U'*Bcorr;
 end
-Cm=Cm_in;
+Cm=Cm_in';
 
 
 
