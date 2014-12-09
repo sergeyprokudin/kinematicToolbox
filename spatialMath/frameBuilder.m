@@ -2,6 +2,7 @@ function [frameOrigin, frameOrient] = frameBuilder(data, stationOrigin, stationF
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
 
+
 %% calculate the frame origin
 if length(stationOrigin)
     frameOrigin = data.(stationOrigin{1});
@@ -15,7 +16,7 @@ end
 
 %% calculate the frame orientation
 if strcmp('v1v2',v1v2v3)
-        % Calculate the unit vectors using the V1V3 method.
+        % Calculate the unit vectors using the V1V2 method.
         % frameOrient  = segmentorientationV2V1(LTCSmkr1-LTCSmkr3,LTCSmkr2-frameOrigin);
         frameOrient  = segmentorientationV2V1(data.(stationFrame{1})-data.(stationFrame{3}),data.(stationFrame{2})-frameOrigin);
         return

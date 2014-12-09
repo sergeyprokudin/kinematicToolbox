@@ -1,0 +1,72 @@
+function f = calibrateModel(varargin)
+
+
+f = varargin;
+return
+
+
+
+
+
+for i = 1 : nargin
+    
+    % if input string is rotation, next value will be a rotation cell array
+    if ischar(varargin{i})
+        if ~isempty(strfind(varargin{i}, 'static'))
+
+            functionInputs = varargin{i+1};
+            % path 2 c3d file
+            c3dFilePath = functionInputs{1};
+            % Read in the marker data
+            structData = btk_loadc3d(c3dFilePath, 10);
+            staticData = structData.marker_data.Markers; 
+            
+        end
+    end
+    
+     % if input string is rotation, next value will be a rotation cell array
+    if ischar(varargin{i})
+        if ~isempty(strfind(varargin{i}, 'sphericalFit'))
+            
+            display(['processing trial ' outputMkr ]);
+            % get a reference to the hip joint center intpus 
+            staticData = sphericalFittingHelper(staticData,f{i+1})
+        
+        end
+    end
+
+    
+    % if input string is filter, next value will be a filter cell array
+    if ischar(varargin{i})
+        if ~isempty(strfind(varargin{i}, 'helicalKnee'))
+               filterProp = varargin{i+1};
+        end
+    end
+   
+    
+    % if input string is mrkList, next value will be a array of strings
+    if ischar(varargin{i})
+        if ~isempty(strfind(varargin{i}, 'anatomicalKnee'))
+               keepMkrs = varargin{i+1};
+               useMkrList = 1;
+        end
+    end
+
+    if ischar(varargin{i})
+        if ~isempty(strfind(varargin{i}, 'anatomicalAnkle'))
+               keepMkrs = varargin{i+1};
+               useMkrList = 1;
+        end
+    end
+end
+
+
+
+
+
+
+
+
+
+
+ end

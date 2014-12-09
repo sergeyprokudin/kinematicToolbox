@@ -1,10 +1,4 @@
-function f = calibrateModel(varargin)
-
-
-f = varargin;
-return
-
-
+function staticData= calibrateModel(varargin)
 
 
 
@@ -17,93 +11,84 @@ for i = 1 : nargin
             functionInputs = varargin{i+1};
             % path 2 c3d file
             c3dFilePath = functionInputs{1};
-            
             % Read in the marker data
-            [PATH,NAME,EXT] = fileparts(c3dFilePath);
-            structData = btk_loadc3d(fullfile(PATH,[NAME EXT]), 10);
-            staticData = structData.marker_data.Markers; 
+            structTrial = btk_loadc3d(c3dFilePath, 10);
+            
+            staticData = structTrial.marker_data.Markers; 
+            staticData = rotateCoordinateSys(staticData,varargin{2});
+            
+%             stations = {{'R_TH1'  'R_TH2' 'R_TH3'} {'R_ASIS' 'R_PSIS'} {'L_ASIS'  'L_PSIS'}}   ;
+%             colors = {'b' 'g' 'k'};
+%             plotStations(staticData, stations, colors)
+            
             
         end
     end
     
      % if input string is rotation, next value will be a rotation cell array
     if ischar(varargin{i})
-        if ~isempty(strfind(varargin{i}, 'hipJoint'))
-            % get a reference to the hip joint center intpus 
-            hipJointInputs = varargin{i+1};
-            % path 2 c3d file
-            c3dFilePath = hipJointInputs{1};
+        if ~isempty(strfind(varargin{i}, 'sphericalFit'))
+            
+            functionInputs = varargin{i+1};
+            c3dFilePath = functionInputs{1};
             % marker names to use in analysis
-            parentMkrs = hipJointInputs{2};
-            childMkrs  = hipJointInputs{3};
+            parentMkrs = functionInputs{2};
+            childMkrs  = functionInputs{3};
             % Name of the output marker
-            outputMkr  =  hipJointInputs{4};
+            outputMkr  =  functionInputs{4};
 
             % Read in the marker data
-            [PATH,NAME,EXT] = fileparts(c3dFilePath);
-            display(['processing trial ' outputMkr ]);
-            structData = btk_loadc3d(fullfile(PATH,[NAME EXT]), 10);
-            mkrData = structData.marker_data.Markers; 
-            
-            % Generate the local frame of the pelvis
-            if length(parentMkrs) == 4
-                 mkrData =  stationBuilder(mkrData, parentMkrs, {'midPelvis' 'SACR'} );
-                [frameOrigin, frameOrient] = frameBuilder(mkrData,{'midPelvis'}, {parentMkrs{1:2} 'SACR'}, 'v1v3' );
-            elseif length(parentMkrs) == 3
-                mkrData =  stationBuilder(data, parentMkrs(1:2), {'midPelvis'} );
-                [frameOrient,frameOrigin] = frameBuilder(mkrData,{'midPelvis'}, parentMkrs, 'v1v3' );
-            end
-            
-            
-            newStations    = stationInFrame(mkrData,frameOrigin, frameOrient, childMkrs, 'local');
-            
-            Cm = sphericalFitting(newStations);
-            CmG= repmat(Cm, length(newStations),1);
-    
-            [frameOrient,frameOrigin] = frameBuilder(staticData,{'midPelvis'}, parentMkrs, 'v1v3' );
-            
-            staticStation   = stationInFrame(staticData,frameOrigin, frameOrient, {CmG outputMkr}, 'global');
+            mkrData = btk_loadc3d(c3dFilePath, 10);
+            mkrData = mkrData.marker_data.Markers; 
+            mkrData = rotateCoordinateSys(mkrData,varargin{2});
 
-            eval(['staticData.' char(outputMkr) ' = staticStation;' ])
-            stationInFrame(staticData, 
+%             plotStations(mkrData, stations, colors)
             
-            
-            
-            
+            % get a reference to the hip joint center intpus 
+            staticData = sphericalFittingHelper(staticData,mkrData,parentMkrs,childMkrs,outputMkr);
+%             
+%             stations = {{'R_TH1'  'R_TH2' 'R_TH3'} {'R_ASIS' 'R_PSIS'} {'midPelvis' 'SACR'} {'L_ASIS'  'L_PSIS'} {'RHJC'}}   ;
+%             colors = {'b' 'g' 'k' 'c' 'r'};
+%             plotStations(staticData, stations, colors)
         
+           
         end
     end
 
     
     % if input string is filter, next value will be a filter cell array
     if ischar(varargin{i})
-        if ~isempty(strfind(varargin{i}, 'filter'))
+        if ~isempty(strfind(varargin{i}, 'helicalKnee'))
                filterProp = varargin{i+1};
         end
     end
-    % if input string is body, next value will be a body structure
-    if ischar(varargin{i})
-        if ~isempty(strfind(varargin{i}, 'body'))
-               body = varargin{i+1};
-               body.useBodies = 1;
-        end
-    end
+   
+    
     % if input string is mrkList, next value will be a array of strings
     if ischar(varargin{i})
-        if ~isempty(strfind(varargin{i}, 'mrkList'))
-               keepMkrs = varargin{i+1};
-               useMkrList = 1;
+        if ~isempty(strfind(varargin{i}, 'anatomicalJoint'))
+                
+                % Read in the marker data
+                functionInputs = varargin{i+1};
+                c3dFilePath = functionInputs{1};
+                mkrData = btk_loadc3d(c3dFilePath, 10);
+                mkrData = mkrData.marker_data.Markers; 
+                mkrData = rotateCoordinateSys(mkrData,varargin{2});
+                % get the joint and ouput station names. 
+                parentMkrs =  functionInputs{2};
+                outputMkr  =  functionInputs{3};
+                
+                mkrData  =  stationBuilder(mkrData, parentMkrs, outputMkr );
+               
+                eval(['staticData.' char(outputMkr) ' = mkrData.' char(outputMkr) ';' ]);
         end
     end
 end
 
 
-
-
-
-
-
-
-
+% Print the structData into a OpenSim trc format 
+printTRC(staticData,...         % Markers
+     structTrial.marker_data.Info.frequency,...  % video freq
+     structTrial.marker_data.Filename);          % filename
 
  end
