@@ -1,10 +1,11 @@
 function staticData = jointCenterCalculation(varargin)
 
+% staticData = varargin;
+% return
 
 
 for i = 1 : nargin
     
-    % if input string is rotation, next value will be a rotation cell array
     if ischar(varargin{i})
         if ~isempty(strfind(varargin{i}, 'static'))
 
@@ -25,8 +26,8 @@ for i = 1 : nargin
         end
     end
     
-     % if input string is rotation, next value will be a rotation cell array
-    if ischar(varargin{i})
+    
+   if ischar(varargin{i})
         if ~isempty(strfind(varargin{i}, 'sphericalFit'))
             
             functionInputs = varargin{i+1};
@@ -51,10 +52,10 @@ for i = 1 : nargin
 %             colors = {'b' 'g' 'k' 'c' 'r'};
 %             plotStations(staticData, stations, colors)
         end
-    end
+   end
 
     
-    % if input string is filter, next value will be a filter cell array
+    
     if ischar(varargin{i})
         if ~isempty(strfind(varargin{i}, 'helicalKnee'))
                filterProp = varargin{i+1};
@@ -62,7 +63,7 @@ for i = 1 : nargin
     end
    
     
-    % if input string is mrkList, next value will be a array of strings
+    
     if ischar(varargin{i})
         if ~isempty(strfind(varargin{i}, 'anatomicalJoint'))
                 
@@ -81,7 +82,29 @@ for i = 1 : nargin
                 eval(['staticData.' char(outputMkr) ' = mkrData.' char(outputMkr) ';' ]);
         end
     end
+    
+    
+     
+    if ischar(varargin{i})
+        if ~isempty(strfind(varargin{i}, 'createFeet'))
+                
+                % Read in the marker data
+                functionInputs = varargin{i+1};
+               
+                for u = 1 : length(functionInputs)
+                    
+                     data      = staticData.(functionInputs{u});
+                     data(:,2) = 0;
+                     
+                     eval(['staticData.' [functionInputs{u} '_grd' ] ' = data ;' ]);
+                end
+        end
+    end
+    
 end
+    
+    
+
 
 
 % Print the structData into a OpenSim trc format 

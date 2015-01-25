@@ -1,4 +1,4 @@
-function staticData = sphericalFittingHelper(staticData,mkrData,parentMkrs,childMkrs,outputMkr);
+function stationData = sphericalFittingHelper(staticData,mkrData,parentMkrs,childMkrs,outputMkr);
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -28,18 +28,18 @@ Cm = sphericalFitting(newStations);
 %% Generate the local frame of the pelvis
 if length(parentMkrs) == 4
 
-     stationData =  stationBuilder(stationData, parentMkrs, {'midPelvis' 'SACR'} );
+     stationData =  stationBuilder(staticData, parentMkrs, {'midPelvis' 'SACR'} );
      [staticFrameOrigin, staticFrameOrient] = frameBuilder(stationData,{'midPelvis'}, {parentMkrs{1:2} 'SACR'}, 'v1v3' );
 
 elseif length(parentMkrs) == 3
 
-    stationData =  stationBuilder(stationData, parentMkrs(1:2), {'midPelvis'});
+    stationData =  stationBuilder(staticData, parentMkrs(1:2), {'midPelvis'});
     [staticFrameOrigin, staticFrameOrient] = frameBuilder(stationData,{'midPelvis'}, parentMkrs, 'v1v3' );
 
 end
 
 % extend the center of rotation for the length (rows) of the data
-CmG= repmat(Cm, length(staticFrameOrient),1);
+CmG = repmat(Cm, length(staticFrameOrient),1);
 
 % Calculate the location in the static trials global frame
 staticStation   = stationInFrame(stationData,staticFrameOrigin, staticFrameOrient, {CmG}, 'global');
